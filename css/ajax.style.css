@@ -1,0 +1,67 @@
+div.rounded {
+   padding: 4px;
+}
+
+div.innerRound {
+   padding-left: 4px;
+   padding-right: 4px;
+   background: white;
+}
+
+#listPanel , #debugPanel, #configPanel {
+   width: 550px;
+   padding: 4px;
+}
+
+#listPanelContents, #debugPanelContents, #configPanelContents {
+   padding: 4px;
+}
+
+#searchContainer, #gridContainer, #submitContainer, #debugContainer, #setupContainer, #optionContainer {
+   padding: 4px;
+   margin-left: 4px;
+   margin-right: 4px;
+}
+
+#gridViewport {
+   float: left;
+   border-bottom: 1px solid black;
+}
+
+#directory_header, #directory {
+   width: 475px;
+   table-layout : fixed;
+   border-collapse: collapse;
+   border: 1px solid black;
+}
+
+.box {
+   width: 50px;
+}
+
+#directory_header th {
+}
+
+#directory td {
+   border: 1px solid black;
+   height: 25px;
+   overflow: hidden;
+   font-family: sans-serif;
+}
+
+input {
+   border: 1px solid black;
+}
+
+input.listCheckbox {
+   border: 0px;
+}
+
+#debugPanelContents {
+   height: 225;
+}
+
+#debug {
+   height: 200px;
+   overflow: auto;
+}

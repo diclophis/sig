@@ -1,0 +1,52 @@
+All code copyright Jon Bardin 2005 unless otherwise stated.
+
+See GPL for licensing information
+
+Use at your own risk.
+
+Contact me if you have any questions: diclophis@gmail.com
+
+diclophis on irc.freenode.net
+
+Load admin.php first
+* My Documents
+  This area can be used to store your uploaded files
+  'Document' is a file you upload to the server, it provides a download link
+  'Folder' is a way of further organizing your My Documents
+  'Mandelbrot Set' is an example of some GD code, mostly academic
+    
+* Image Galleries
+  This area can be used to manage Image Galleries
+  'Gallery' is a 'Folder' for images
+  'Image' is an image, thumbnails are auto generated
+
+* Calendar System
+  This area can be used to store Calendar Events
+  'Caledar' contains events
+  'Event' has a start/end day and a start/end time... events can span days, recurring events in future releases
+
+* Online Polls
+  This area can be used to store your Polls
+  'Poll' has a title, and a newline seperated listing of 'Vote' options
+  'Vote' is a vote
+
+* Code Snippets
+  This area can be used to store your code snippets
+  'Code Snippet' has a title, and textarea for code. output is syntax highlighted
+
+* Discussion Forums
+  This area is where you create Forums
+  'Forum' contains threads, has a descritive body, active by default is used for top-level forums
+  'Thread' is created by the user
+
+* Business Directories
+  This area is used to store Business Directories
+  Area still under construction
+
+* Wordpress Pages
+  This area is how you publish your Nodes
+  'Wordpress Page' has a title, then you 'attach' nodes, you can also order the attached nodes
+
+* Recycle Bin
+  This area is where your deleted Nodes go
+  future support for undelete is planned

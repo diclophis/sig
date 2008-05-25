@@ -1,0 +1,151 @@
+FIX SITEID *fixed so far
+
+FIX HACK
+   better simulnode publishing
+
+FIX ordering
+   setup dropdown or something to do sortbys on X field
+
+UserProfileHtml method
+
+anon-user option/support
+   Somewhat works for ForumSystem
+
+finalize user-id for create/update *done
+
+Node
+   add node_rel table *seems to be working
+   fix creation orderby *default orderby=0, user must change if so wanted
+   add more prop_type, specifically dropdown
+
+PollSystem
+   use cookie/IP to prevent double-voting
+   a simple bargraph results page (div, width)
+
+ForumSystem
+   Rename Forum->Thread, Thread->Comment
+   fix HtmlData, change to FormattedBody
+   Set so only certain level can make Forum_Nodes *done
+   Figure out moderation
+   general forum logic
+
+TrashSystem
+   DeletedNode
+      child is the node *done
+      var deleted_node_parent_id *done
+      on undelete, set child->parent_id = deleted_node_parent_id (doRestore)
+
+GallerySystem
+   zip upload, download support
+   investigate plogger
+   flickr workalike sidebar plugin integration
+      fix fade *done
+      fix modulus to allow for X,Y sizing
+      make simple template function
+         1 argument, an ID, a Title of a gallery, or if NULL, first gallery
+   thumbnail option, size, percentage, or none
+   default status, thumbnail, full
+
+ConfigSystem
+   checkboxes for features *done
+   links to css files for editing
+
+BusinessDirectorySystem
+   Get form working
+   Get demo working
+
+General
+fix HtmlData, FormattedBody problems
+   Somewhat fixed, new algorithm works OK so far
+
+success messages and return links through out codebase
+   Added sig_notice_ok, sig_notice_warning, sig_notice_error *done
+
+user_id, permisions through out
+'sort_column=menu_order' in wp_list_pages
+
+* Model: This is the domain-specific representation of the information on which the application operates.
+* View: This renders the model into a form suitable for interaction, typically a user interface element.
+* Controller: This responds to events, typically user actions, and invokes changes on the model or view as appropriate.
+
+1. user interacts with the user interface in some way (e.g., user presses a button)
+2. controller receives notification of the user action from the user interface objects
+3. controller accesses the model, possibly updating it in a way appropriate to the user's action
+4. model notifies the view of changes, sometimes via the controller, or perhaps using the Publish-Subscribe pattern.
+5. view uses the model to generate an appropriate user interface.
+
+-Models
+--Original
+int 		ID
+varchar		userName
+varchar		password
+varchar		CompanyName
+varchar		ContactName
+varchar		StreetAddress
+varchar		City
+int		State
+int		Zip
+varchar		ContactTitle
+int		MainPhoneNumber
+int		FaxNumber
+int		CellPhone
+int		OtherPhone
+int		PagerNumber
+int		TollFreeNumber
+varchar		WebAddress
+varchar		EmailAddress
+varchar		CompanyDescription
+varchar		CompanyBrief
+UDF_1
+UDF_2
+UDF_3
+UDF_4
+UDF_5
+UDF_6
+UDF_7
+UDF_8
+UDF_9
+UDF_10
+varchar		compLogo
+varchar		compPhoto
+boolean		isApproved
+int		Type
+
+-Views
+--Entry Search
+Template Vars:
+[Search By Company Name Form]
+[Search By Category(s) Form]
+[Search By Letter Form]
+
+--Directory Listing
+Template Vars:
+[Professional Listings
+ [Name, Contact, Website, Email, Phone]
+]
+[Free Listings
+ [Name, Contact, Website, Email, Phone]
+]
+
+--Entry Listing
+Template Vars:
+[Logo]
+[Contact]
+[Phone]
+[Email]
+[Webpage]
+[Address]
+[City, State, Zip]
+[Categories]
+[Brief]
+[Spotlight]
+[Photo]
+
+--Register Form
+
+
+-Controller
+--Wordpress Page
+GetById
+
+--Wordpress Admin

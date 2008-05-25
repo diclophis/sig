@@ -1,0 +1,211 @@
+body {
+   padding: 0em;
+   margin: 0em;
+}
+
+p {
+   padding: 0em;
+   margin: 0em;
+}
+
+ul {
+   list-style-type:none;
+   margin:0;
+   padding:0;
+}
+
+input {
+   margin: 2px;
+}
+
+select {
+   margin: 2px;
+}
+
+legend {
+   border: 0px;
+}
+
+fieldset {
+   border: 0px;
+}
+
+.sig_notice_warning {
+   font-weight: bolder;
+   color: red;
+}
+
+.sig_notice_error {
+   color: red;
+}
+
+.sig_notice_ok {
+   color: green;
+}
+
+.sig_form_hidden {
+   display: none;
+   visibility: hidden;
+}
+
+#sig_fs_parent_id, #sig_fs_node_type {
+   display: none;
+   visibility: hidden;
+}
+
+#listingList { 
+   list-style-type:none;
+   margin:0;
+   padding:0;
+}
+
+#listingList li {
+   width:100%;
+   margin:0;
+   margin-left:4px;
+   padding-left:4px;
+   padding:4px;
+}
+
+li.duringOrder {
+   background: #e0e0e0;
+}
+
+li.orderable {
+   cursor:move;
+}
+
+table.sig_calendar {
+   width: 100%;
+   border-collapse: collapse;
+   float: left;
+}
+
+td.profile {
+   width: 25px;
+}
+
+tr.sig_calendar_header {
+}
+
+.sig_calendar td {
+   vertical-align: top;
+   white-space: nowrap;
+}
+
+td.sig_calendar_previous {
+   text-align: left;
+}
+
+td.sig_calendar_current {
+   text-align: center;
+}
+
+td.sig_calendar_next {
+   text-align: right;
+}
+
+td.sig_calendar_weekday {
+   text-align: center;
+}
+
+tr.sig_calendar_week {
+   height: 38px;
+}
+
+td.sig_calendar_empty_day {
+   background-color: #e0e0e0;
+}
+
+td.sig_calendar_event_day {
+   border: 2px solid black;
+}
+
+td.sig_calendar_weekday {
+   width: 64px;
+}
+
+td.sig_calendar_day {
+   border: 1px solid black;
+}
+
+td.sig_calendar_hour {
+   border: 1px solid black;
+   border-left: 0px;
+   border-right: 0px;
+   width: 1%;
+}
+
+td.sig_calendar_event_header {
+   text-align: center;
+   font-weight: bold;
+   border-bottom: 1px solid black;
+   width: 25px;
+}
+
+td.sig_calendar_day_hour {
+   border-left: 0px;
+   border-right: 0px;
+   width: 1%;
+}
+
+td.sig_calendar_event_hour {
+   background-color: red;
+   border-top: 0px;
+   border-bottom: 0px;
+   border-left: 1px solid black;
+   border-right: 1px solid black;
+}
+
+div.sig_calendar_day {
+   padding: 2px;
+   clear: right;
+}
+
+div.sig_calendar_event {
+   font-size: xx-small;
+}
+
+div.psp {
+   width: 480px;
+}
+
+#div_0 {
+   top: 0px;
+   left: 0px;
+}
+/*
+#div_1 {
+   top: 0px;
+   left: 480px;
+}
+*/
+#div_2 {
+   top: 0px;
+   left: 960px;
+}
+#div_3 {
+   top: 272px;
+   left: 0px;
+}
+#div_4 {
+   top: 272px;
+   left: 480px;
+}
+#div_5 {
+   top: 272px;
+   left: 960px;
+}
+#div_6 {
+   top: 544px;
+   left: 0px;
+}
+#div_7 {
+   top: 544px;
+   left: 480px;
+}
+#div_8 {
+   top: 544px;
+   left: 960px;
+}
+
