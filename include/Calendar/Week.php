@@ -122,7 +122,7 @@ class Calendar_Week extends Calendar
         if ($firstDay !== false) {
             $this->firstDay = $firstDay;
         }
-        $this->tableHelper = & new Calendar_Table_Helper($this, $firstDay);
+        $this->tableHelper = new Calendar_Table_Helper($this, $firstDay);
         $this->thisWeek = $this->tableHelper->getWeekStart($y, $m, $d, $firstDay);
         $this->prevWeek = $this->tableHelper->getWeekStart($y, $m, $d - $this->cE->getDaysInWeek(
             $this->thisYear(),

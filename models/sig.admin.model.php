@@ -1,4 +1,4 @@
-<?
+<?php
 
 $SiG_Tables = array('node_data', 'node_rel', 'property_data', 'property_types');
 

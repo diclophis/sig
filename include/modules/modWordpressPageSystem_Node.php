@@ -1,4 +1,4 @@
-<?
+<?php
 
 class WordpressPageSystem_Node extends System_Node {
    var $struct = array( "node_type"       => "WordpressPageSystem_Node",

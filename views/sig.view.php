@@ -1,4 +1,4 @@
-<?
+<?php
 
 class SiG_View {
    var $name;

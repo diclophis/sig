@@ -1,4 +1,4 @@
-<?
+<?php
 
    class Node {
       var $id;

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class WordpressPage_Node extends Folder_Node {
    var $struct = array(

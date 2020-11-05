@@ -1,4 +1,5 @@
-<?
+<?php
+
    class Thread_Node extends Forum_Node {
       var $struct = array( "node_type" => "Thread_Node",
                            "title"     => array( "prop_type" => "text",

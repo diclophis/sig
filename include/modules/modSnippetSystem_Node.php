@@ -1,4 +1,4 @@
-<?
+<?php
 
 class SnippetSystem_Node extends System_Node {
    var $struct = array( "node_type"       => "SnippetSystem_Node",

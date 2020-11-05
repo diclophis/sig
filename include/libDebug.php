@@ -1,4 +1,5 @@
-<?
+<?php
+
    class Debug {
       var $messages;
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class SiG_Html_View extends SiG_View {
    var $attributes;

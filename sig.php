@@ -25,13 +25,13 @@ Copyright 2005  Jon Bardin  (email : diclophis@gmail.com)
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-$sys_dbhost = 'localhost';
-$sys_dbuser = 'root';
-$sys_dbpasswd = '';
+$sys_dbhost = '127.0.0.1';
+$sys_dbuser = 'sig';
+$sys_dbpasswd = 'password';
 $sys_dbname = 'sig';
 $table_prefix  = '';
 
-define('ABSPATH', '/home/jbardin/sig');
+define('ABSPATH', '/usr/share/php');
 
 define('CALENDAR_ROOT', ABSPATH.'/include/Calendar/');
 

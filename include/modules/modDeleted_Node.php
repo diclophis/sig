@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Deleted_Node extends Node {
    var $struct = array("node_type" => "Node",

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Mandel_Node extends Node {
 

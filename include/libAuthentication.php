@@ -1,4 +1,4 @@
-<?
+<?php
 
 $hidden_hash_var='your_password_here';
 

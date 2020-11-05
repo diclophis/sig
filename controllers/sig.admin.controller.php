@@ -1,4 +1,4 @@
-<?
+<?php
 
 class SiG_Admin_Controller extends SiG_Controller {
    function SiG_Admin_Controller ()

@@ -1,4 +1,4 @@
-<?
+<?php
 
    class Property {
       function Property ($node_id, $type)

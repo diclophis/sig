@@ -1,4 +1,4 @@
-<?
+<?php
 
 class SiG_Ajax_Controller extends SiG_Controller {
    //var responses = array();

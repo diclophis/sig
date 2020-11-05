@@ -1,4 +1,5 @@
-<?
+<?php
+
 /* Code that displays the code */
 class Snippet_Node extends Node {
    var $struct = array(

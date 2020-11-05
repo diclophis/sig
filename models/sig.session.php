@@ -1,4 +1,4 @@
-<?
+<?php
 
 class SiG_Session extends SiG_Model {
    var $request;

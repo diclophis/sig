@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
 * Cache file class

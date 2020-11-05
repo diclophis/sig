@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Event_Node extends Node {
    var $struct = array(

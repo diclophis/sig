@@ -1,4 +1,5 @@
 <?php
+
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 //
 // +----------------------------------------------------------------------+
@@ -401,7 +402,7 @@ class Calendar
     {
         if (!isset($this->validator)) {
             require_once CALENDAR_ROOT.'Validator.php';
-            $this->validator = & new Calendar_Validator($this);
+            $this->validator = new Calendar_Validator($this);
         }
         return $this->validator;
     }

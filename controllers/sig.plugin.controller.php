@@ -1,4 +1,4 @@
-<?
+<?php
 
 class SiG_Plugin_Controller extends SiG_Controller {
 

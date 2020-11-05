@@ -1,4 +1,4 @@
-<?
+<?php
 
    class Gallery_Node extends Folder_Node {
       var $struct = array( "node_type" => "Gallery_Node",

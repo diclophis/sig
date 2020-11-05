@@ -1,4 +1,4 @@
-<?
+<?php
 
 class System_Node extends Node {
 

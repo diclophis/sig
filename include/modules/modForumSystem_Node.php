@@ -1,4 +1,4 @@
-<?
+<?php
 
 class ForumSystem_Node extends System_Node {
    var $struct = array( "node_type"       => "ForumSystem_Node",

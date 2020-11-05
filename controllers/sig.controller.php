@@ -1,4 +1,4 @@
-<?
+<?php
 
 class SiG_Controller {
    function SiG_Controller ()

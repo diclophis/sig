@@ -1,4 +1,5 @@
-<?
+<?php
+
    class Property_type {
       function Property_type ($name)
       {

@@ -1,0 +1,105 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sig-bardin-haus-app
+  labels:
+    ttl: '16'
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 32252
+    port: 8080
+    protocol: TCP
+  selector:
+    name: sig
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sig-bardin-haus-vhost
+  labels:
+    ttl: '16'
+spec:
+  rules:
+  - host: sig.bardin.haus
+    http:
+      paths:
+      - backend:
+          serviceName: sig-bardin-haus-app
+          servicePort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sig
+  labels:
+    ttl: '16'
+spec:
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      name: sig
+  template:
+    metadata:
+      labels:
+        name: sig
+        ttl: '16'
+    spec:
+      volumes:
+      - name: run
+        emptyDir: {}
+      initContainers:
+      - name: "remove-lost-found"
+        image: "busybox:latest"
+        imagePullPolicy: "IfNotPresent"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        command:  ["rm", "-fr", "/var/lib/mysql/lost+found"]
+      containers:
+      - name: mysql
+        image: "mysql:8.0"
+        imagePullPolicy: "IfNotPresent"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
+        - name: MYSQL_PASSWORD
+          value: "password"
+        - name: MYSQL_USER
+          value: "sig"
+        - name: MYSQL_DATABASE
+          value: "sig"
+        ports:
+        - name: mysql
+          containerPort: 3306
+          hostPort: 3306
+      - name: sig-bardin-haus-app
+        image: sig.bardin.haus:latest
+        imagePullPolicy: IfNotPresent
+        volumeMounts: 
+        - mountPath: /var/run/apache2
+          name: run
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 20m
+        command:
+        - "apache2"
+        - "-D"
+        - "FOREGROUND"
+        env: &1
+        - name: APP_ENV
+          value: production

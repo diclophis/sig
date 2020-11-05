@@ -1,4 +1,4 @@
-<?
+<?php
 
 class BusinessDirectorySystem_Node extends System_Node {
    var $struct = array( "node_type"       => "BusinessDirectorySystem_Node",

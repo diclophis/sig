@@ -1,4 +1,4 @@
-<?
+<?php
 
 class CalendarSystem_Node extends System_Node {
    var $struct = array( "node_type"       => "CalendarSystem_Node",

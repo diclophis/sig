@@ -1,4 +1,4 @@
-<?
+<?php
 
    class Vote_Node extends Poll_Node {
       var $struct = array( "node_type"       => "Vote_Node",

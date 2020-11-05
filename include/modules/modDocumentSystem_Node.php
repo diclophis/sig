@@ -1,4 +1,4 @@
-<?
+<?php
 
 class DocumentSystem_Node extends System_Node {
    var $struct = array( "node_type"       => "DocumentSystem_Node",

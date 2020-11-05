@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Query {
 	function Query ($query, $debug = 1) {
@@ -21,10 +21,12 @@ class Query {
 */
 
       
-		global $db, $rpc_server, $rpc_server_port, $sys_dbhost, $sys_dbuser, $sys_dbpasswd, $sys_dbname;
+		//TODO!!! 
+    global $db, $rpc_server, $rpc_server_port, $sys_dbhost, $sys_dbuser, $sys_dbpasswd, $sys_dbname;
 
 		if (!is_object($db)) {
 			$db = New Database ($sys_dbhost, $sys_dbuser, $sys_dbpasswd);
+			//$db = New Database ("localhost", "root", "");
 		}
 
 		//$GLOBALS[dbcalls]++;
