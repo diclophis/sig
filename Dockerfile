@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y apache2 apache2-utils libapache2-mod-php php-xml php-mysql
+RUN apt-get install -y apache2 apache2-utils libapache2-mod-php php-xml php-mysql php-gd
 
 RUN a2enmod php7.2 headers rewrite
 RUN a2dissite 000-default
@@ -30,10 +30,7 @@ COPY models /usr/share/php/models/
 COPY templates /usr/share/php/templates/
 COPY views /usr/share/php/views/
 
-#RUN mkdir -p /var/www/html/wikis; chown www-data /var/www/html/wikis
-#RUN htpasswd -cb /etc/apache2/webdav.password guest guest
-#RUN chown root:www-data /etc/apache2/webdav.password
-#RUN chmod 640 /etc/apache2/webdav.password
+RUN mkdir -p /var/www/html/images/fractals; chown -R www-data /var/www/html/images
 
 RUN apache2 -t
 

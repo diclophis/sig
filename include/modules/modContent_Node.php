@@ -86,24 +86,24 @@
       $pagenav .= ")";
       $this->bodytext = str_replace('[pagenav]', $pagenav, $this->bodytext);
 
-      if (ereg('\[prev\]', $this->bodytext) && ereg('\[/prev\]', $this->bodytext)) {
+      if (preg_match('\[prev\]', $this->bodytext) && preg_match('\[/prev\]', $this->bodytext)) {
          $this->bodytext = str_replace('[prev]', $referenceNode->get_next_href($this->childNumber-1), $this->bodytext);
          $this->bodytext = str_replace('[/prev]', '</a>', $this->bodytext);
       }
 
-      if (ereg('\[next\]', $this->bodytext) && ereg('\[/next\]', $this->bodytext)) {
+      if (preg_match('\[next\]', $this->bodytext) && preg_match('\[/next\]', $this->bodytext)) {
          $this->bodytext = str_replace('[next]', $referenceNode->get_next_href($this->childNumber+1), $this->bodytext);
          $this->bodytext = str_replace('[/next]', '</a>', $this->bodytext);
       }
 
-      while (ereg('\[page=([0-9])*\]', $this->bodytext, $reg)) {
+      while (preg_match('\[page=([0-9])*\]', $this->bodytext, $reg)) {
          $this->bodytext = str_replace('[page=&quot;javascript', '[page=&quot; javascript', $this->bodytext);
          $page = intval($reg[1]);
-         $this->bodytext = ereg_replace('\[page='.$page.'\]',$referenceNode->get_next_href(intval($page-1)),$this->bodytext);
+         $this->bodytext = preg_replace('\[page='.$page.'\]',$referenceNode->get_next_href(intval($page-1)),$this->bodytext);
          $this->bodytext = str_replace('[/page]', '</a>', $this->bodytext);
       }
 
-      while (ereg('\[node=([0-9]*)\]', $this->bodytext, $reg)) {
+      while (preg_match('\[node=([0-9]*)\]', $this->bodytext, $reg)) {
          $nodeId = (intval($reg[1]));
          $nodeInstance = Node::new_instance($nodeId);
          $div = new Tag('br'); 
@@ -111,7 +111,7 @@
          //   $nodeInstance->ActiveHtmlData($div, $this, $this);
          //} else {
          //}
-         $this->bodytext = ereg_replace('\[node='.$nodeId.'\]',$nodeInstance->DrawEmbeded(),$this->bodytext);
+         $this->bodytext = preg_replace('\[node='.$nodeId.'\]',$nodeInstance->DrawEmbeded(),$this->bodytext);
       }
 
       return $this->bodytext;

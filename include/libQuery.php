@@ -25,7 +25,7 @@ class Query {
     global $db, $rpc_server, $rpc_server_port, $sys_dbhost, $sys_dbuser, $sys_dbpasswd, $sys_dbname;
 
 		if (!is_object($db)) {
-			$db = New Database ($sys_dbhost, $sys_dbuser, $sys_dbpasswd);
+			$db = New Database ($sys_dbhost, $sys_dbuser, $sys_dbpasswd, $sys_dbname);
 			//$db = New Database ("localhost", "root", "");
 		}
 

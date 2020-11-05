@@ -24,13 +24,15 @@
 
       function set_value ($value, $new = false)                // Sets the member to the new value
       {
+      global $db;
+
          //Debug::add_message(__FILE__, __LINE__, "I set ".$this->property_type->name." = ".$value, 'error');
          $query =  ($new ? "REPLACE ".SiG_Controller::GetTablePrefix()."property_data SET " 
                          : "UPDATE ".SiG_Controller::GetTablePrefix()."property_data SET ")
                    . "id='".$this->id."', "
                    . "type_id='".$this->type_id."', "
                    . "node_id='".$this->node_id."', "
-                   . "value='".mysql_real_escape_string(stripslashes($value))."' "
+                   . "value='".mysqli_real_escape_string($db->conn, stripslashes($value))."' "
                    . ($new ? '' : "WHERE id='".$this->id."'");
 
          $results = New Query($query, 1);

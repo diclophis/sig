@@ -296,7 +296,7 @@
          $nodeValues['perms'] = 777;
          $nodeValues['umask'] = 777;
 
-         $query = "INSERT INTO ".SiG_Controller::GetTablePrefix()."node_data VALUES ('', "
+         $query = "INSERT INTO ".SiG_Controller::GetTablePrefix()."node_data VALUES (NULL, "
                 . "'".SiG_Session::Instance()->GetUserData()->ID."', "
                 . "'".'1'."', " //FIX TODO $nodeValues['group_id']."', "
                 . "'".time()."', "

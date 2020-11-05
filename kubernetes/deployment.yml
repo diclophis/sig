@@ -1,5 +1,14 @@
 ---
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql
+data:
+  mysql-custom.cnf: |-
+    [mysqld]
+    default_authentication_plugin=mysql_native_password
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: sig-bardin-haus-app
@@ -54,6 +63,9 @@ spec:
       volumes:
       - name: run
         emptyDir: {}
+      - name: config
+        configMap:
+          name: mysql
       initContainers:
       - name: "remove-lost-found"
         image: "busybox:latest"
@@ -84,8 +96,12 @@ spec:
         - name: mysql
           containerPort: 3306
           hostPort: 3306
+        volumeMounts:
+        - name: config
+          mountPath: /etc/mysql/conf.d/mysql-custom.cnf
+          subPath: mysql-custom.cnf
       - name: sig-bardin-haus-app
-        image: sig.bardin.haus:latest
+        image: sig:latest
         imagePullPolicy: IfNotPresent
         volumeMounts: 
         - mountPath: /var/run/apache2

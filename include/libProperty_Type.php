@@ -13,7 +13,7 @@
          } else {
             $this->id = 0;
             Debug::add_message(__file__, __line__, "fail of proptype id fetch of ".$name, 'error');
-            $q = new Query('INSERT INTO '.SiG_Controller::GetTablePrefix().'property_types VALUES ("", "'.$name.'")');
+            $q = new Query('INSERT INTO '.SiG_Controller::GetTablePrefix().'property_types VALUES (NULL, "'.$name.'")');
             if ($data2 = $results->execute()) {
                //return new Property_type($name);
             } else {

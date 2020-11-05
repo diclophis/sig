@@ -57,7 +57,7 @@ class WordpressPage_Node extends Folder_Node {
    function delete ()
    {
       $query = sprintf("DELETE FROM wp_posts WHERE ID='%d'",
-                       mysql_real_escape_string($this->page_id->value));
+                       mysqli_real_escape_string($this->page_id->value));
 
       $results = new Query($query);
       return parent::delete();
@@ -181,8 +181,8 @@ class WordpressPage_Node extends Folder_Node {
    {
       parent::SetOrderBy($parentId, $orderBy);
       $query = sprintf("UPDATE `wp_posts` SET menu_order='%d' WHERE ID='%d'",
-                          mysql_real_escape_string($orderBy),
-                          mysql_real_escape_string($this->page_id->value));
+                          mysqli_real_escape_string($orderBy),
+                          mysqli_real_escape_string($this->page_id->value));
       $results = new Query($query);
    }
 

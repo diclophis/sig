@@ -85,9 +85,11 @@
             
             $http_path_to_image = Image_Node::ImageUrl($thumbnail);
             $filename = $new_name;
-         } elseif ($this->id && $this->new) {
-            $this->$fieldname->set_value('', $this->new);
          }
+         
+         //elseif ($this->id && $this->new) {
+         //   $this->$fieldname->set_value('', $this->new);
+         //}
 
          $p = new Tag('p');
          $a = new Tag('a', array('href'=>Image_Node::ImageUrl($filename), 'target'=>'_new'));

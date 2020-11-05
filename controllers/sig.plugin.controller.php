@@ -54,6 +54,10 @@ class SiG_Plugin_Controller extends SiG_Controller {
    function NavigationElements ($container)
    {
       $root = Node::GetSystemNodeByTitle("Pages");
+      if (!$root) {
+        throw new Exception("MAKE BASE ROOT NODE");
+      }
+
       $ul = new Tag('ul');
       foreach ($root->get_array_of_children() as $child) {
          $li = new Tag('li');
@@ -70,7 +74,7 @@ class SiG_Plugin_Controller extends SiG_Controller {
       $breadcrumbFieldset = new Tag('div', array('id'=>'breadcrumb'));
 
       $homeA = new Tag('a', array('href'=>'?'));
-      $homeA->AddElement('RisingCode.com');
+      $homeA->AddElement('SiG');
       $breadcrumbFieldset->AddElement($homeA);
 
       if ($pageNode->id) {

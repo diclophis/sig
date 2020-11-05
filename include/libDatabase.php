@@ -74,10 +74,11 @@ class Database {
 	*/
    var $lhandle;
 
-	function Database ($sys_dbhost, $sys_dbuser, $sys_dbpasswd) {
+	function Database ($sys_dbhost, $sys_dbuser, $sys_dbpasswd, $sys_dbname) {
 		$this->username = $sys_dbuser;
 		$this->password = $sys_dbpasswd;
 		$this->hostname = $sys_dbhost;
+    $this->dbname = $sys_dbname;
 		$this->error = false;
 		$this->connect();
 	}
@@ -85,7 +86,7 @@ class Database {
    function connect() {
 		//global $sys_dbhost,$sys_dbuser,$sys_dbpasswd;
 
-      $this->conn = mysqli_connect($this->hostname,$this->username,$this->password);
+      $this->conn = mysqli_connect($this->hostname,$this->username,$this->password,$this->dbname);
       if (!$this->conn) {
          $this->error = true;
          echo $this->debug_msq = mysqli_connect_error();
@@ -125,7 +126,7 @@ class Database {
    }
 
    function affected_rows($qhandle) {
-      return mysqli_affected_rows();
+      return mysqli_affected_rows($this->conn);
    }
 
    function fetch_array($qhandle) {
@@ -143,7 +144,7 @@ class Database {
    }
 	
    function insertid() {
-      return mysqli_insert_id();
+      return mysqli_insert_id($this->conn);
    }
 
    function error() {
