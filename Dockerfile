@@ -24,6 +24,11 @@ ADD sig.conf /etc/apache2/sites-available/sig.conf
 RUN a2ensite sig
 
 ADD sig.php index.php admin.php /var/www/html/
+
+COPY js /var/www/html/js/
+COPY css /var/www/html/css/
+COPY images /var/www/html/images/
+
 COPY controllers /usr/share/php/controllers/
 COPY include /usr/share/php/include/
 COPY models /usr/share/php/models/
