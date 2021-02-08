@@ -41,7 +41,7 @@ class SiG_View {
          } elseif (is_array($element)) {
             
          } else {
-            $return .= $element;
+            $return .= htmlentities($element);
          }
       }
       return $return;
