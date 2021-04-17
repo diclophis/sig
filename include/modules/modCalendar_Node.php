@@ -44,7 +44,18 @@ class Calendar_Node extends Node {
             $day->build($eventHours);
            
             $table = new Tag('table', array('class'=>'sig_calendar'));
- 
+
+            $stackerTr = new Tag('tr');
+            $hourTdS = new Tag('td', array('class'=>'sig_calendar_hour'));
+            $hourTdS->AddElement('XXX');
+            $stackerTr->AddElement($hourTdS);
+            foreach ($todaysEvents as $event) {
+               $eventTdS = new Tag('td', array('class'=>'sig_calendar_event_header')); 
+               $eventTdS->AddElement("XXX");
+               $stackerTr->AddElement($eventTdS);
+            }
+            $table->AddElement($stackerTr);
+
             $headerTr = new Tag('tr');
             $hourTd = new Tag('td', array('class'=>'sig_calendar_hour'));
             $hourTd->AddElement('Hour');
@@ -130,7 +141,7 @@ class Calendar_Node extends Node {
 
          if ($Day->isEmpty()) { // Check to see if day is empty
             $td = new Tag('td', array('class'=>'sig_calendar_empty_day'));
-            $td->AddElement('&nbsp;');
+            //$td->AddElement('&nbsp;');
          } elseif ($Day->isSelected()) {
             $td = new Tag('td', array('class'=>'sig_calendar_event_day'));
             $dayDiv = new Tag('div');

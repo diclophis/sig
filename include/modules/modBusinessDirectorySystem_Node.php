@@ -11,7 +11,7 @@ class BusinessDirectorySystem_Node extends System_Node {
    function BrowseInfoElement ()
    {
       $div = new Tag('div');
-      $div->AddElement('This area is used to store Business Directories<br/>');
+      $div->AddElement('This area is used to store Business Directories');
       return $div;
    }
 }

@@ -10,7 +10,7 @@ class CalendarSystem_Node extends System_Node {
    function BrowseInfoElement ()
    {
       $div = new Tag('div');
-      $div->AddElement('This area can be used to store Calendar Events<br/>');
+      $div->AddElement('This area can be used to store Calendar Events');
       return $div;
    }
 }

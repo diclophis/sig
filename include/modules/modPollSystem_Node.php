@@ -10,7 +10,7 @@ class PollSystem_Node extends System_Node {
    function BrowseInfoElement ()
    {
       $div = new Tag('div');
-      $div->AddElement('This area can be used to store your Polls<br/>');
+      $div->AddElement('This area can be used to store your Polls');
       return $div;
    }
 }

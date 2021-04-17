@@ -53,7 +53,7 @@
          } else {
             $totals = @array_count_values($this->get_num_of_properties_in_children('node_type'));
             $a = new Tag('a', array('href'=>SiG_Plugin_Controller::Permalink().'&active_id='.$this->id));
-            $a->AddElement($this->title->value.'&nbsp;('.intval($totals['Thread_Node']).')');
+            $a->AddElement($this->title->value.' ('.intval($totals['Thread_Node']).')');
             $container->AddElement($a);
          }
       }
@@ -144,7 +144,7 @@
 
                      $iconTd = new Tag('td');
                      $a = new Tag('a', array('href'=>SiG_Plugin_Controller::Permalink().'&active_id='.$child->id));
-                     $a->AddElement('<img src="images/folder.png"/>');
+                     //$a->AddElement('<img src="images/folder.png"/>');
                      $iconTd->AddElement($a);
 
                      $titleTd = new Tag('td');

@@ -16,7 +16,7 @@ class DocumentSystem_Node extends System_Node {
    function BrowseInfoElement ()
    {
       $div = new Tag('div');
-      $div->AddElement('This area can be used to store your uploaded files<br/>');
+      $div->AddElement('This area can be used to store your uploaded files');
       return $div;
    }
 }

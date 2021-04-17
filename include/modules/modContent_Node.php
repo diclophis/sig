@@ -58,7 +58,7 @@
    function get_body ($active = FALSE) 
    {
       $this->bodytext = $this->get_property_member('body','value');
-      $pagenav = "&nbsp;(&nbsp;";
+      $pagenav = " ( ";
             
       if ($active) {
          $parentIds = $this->GetParentIds();
@@ -76,10 +76,10 @@
       for ($i=0; $i < $count; $i++) {
          $ar = $referenceNode->get_child($i);
          if ($this->id != $ar->id) {
-               $pagenav .= '<a href="'.SiG_Plugin_Controller::Permalink().'&active_id='.$ar->id.'">'.($i+1).'</a>&nbsp;';
+               $pagenav .= '<a href="'.SiG_Plugin_Controller::Permalink().'&active_id='.$ar->id.'">'.($i+1).'</a> ';
          } else {
             $this->childNumber = $i;
-            $pagenav .= ($i+1)."&nbsp;";
+            $pagenav .= ($i+1)." ";
          }
       }
 

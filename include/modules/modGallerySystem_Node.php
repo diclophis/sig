@@ -11,7 +11,7 @@ class GallerySystem_Node extends System_Node {
    function BrowseInfoElement ()
    {
       $div = new Tag('div');
-      $div->AddElement('This area can be used to manage Image Galleries<br/>');
+      $div->AddElement('This area can be used to manage Image Galleries');
       return $div;
    }
 }

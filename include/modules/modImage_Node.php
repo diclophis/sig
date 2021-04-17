@@ -23,7 +23,8 @@
 
       function ImagePath ($imageName)
       {
-         $path = SiG_Controller::BasePath().'/tmp/'.$imageName;
+         //$path = SiG_Controller::BasePath().'/tmp/'.$imageName;
+         $path = '/var/www/html/tmp/'.$imageName;
          return $path;
       }
 
@@ -42,24 +43,6 @@
          }
       }
 
-
-/*      
-      function purge_old_file ()
-      {
-         $image_filename = $this->get_property_member('body', 'value');
-         $thumbnail_filename = 'thumbnail_'.$image_filename;
-         
-         Image_Node::UnlinkFile(Image_Node::ImagePath($image_filename));
-         Image_Node::UnlinkFile(Image_Node::ImagePath($thumbnail_filename)); 
-      }
-
-      function delete ()
-      {
-         $this->purge_old_file();
-         return parent::delete();
-      }
-*/
-
       function ImageUploadElement ($node, $fieldname, $filename)
       {
          $container = new Tag('div');
@@ -70,7 +53,6 @@
             Image_Node::UnlinkFile(Image_Node::ImagePath($image_filename));
             Image_Node::UnlinkFile(Image_Node::ImagePath($thumbnail_filename)); 
             
-            //$this->purge_old_file();
             $new_name = uniqid(5).basename(SiG_Session::Instance()->UploadedFilename($fieldname));
             $thumbnail = 'thumbnail_'.$new_name;
             
@@ -87,10 +69,6 @@
             $filename = $new_name;
          }
          
-         //elseif ($this->id && $this->new) {
-         //   $this->$fieldname->set_value('', $this->new);
-         //}
-
          $p = new Tag('p');
          $a = new Tag('a', array('href'=>Image_Node::ImageUrl($filename), 'target'=>'_new'));
          $img = new Tag('img', array('src'=>Image_Node::ImageUrl('thumbnail_'.$filename)));
@@ -203,7 +181,7 @@
          $peerP->AddElement($a);
          if ($parentNode->get_num_of_children() > 1) {
             $count = 0;
-            $peerP->AddElement('&nbsp;(&nbsp;');
+            $peerP->AddElement(' ( ');
             foreach ($parentNode->get_array_of_children() as $peer) {
                $count++;
                if ($peer->id != $this->id) {
@@ -213,9 +191,9 @@
                } else {
                   $peerP->AddElement($count);
                }
-               $peerP->AddElement('&nbsp;');
+               $peerP->AddElement(' ');
             }
-            $peerP->AddElement(')</br>');
+            $peerP->AddElement(')');
          }
 
          $div->AddElement($peerP);
@@ -260,7 +238,7 @@
                $peerP = new Tag('p');
                if ($this->get_num_of_peers($parent_id) > 1) {
                   $count = 0;
-                  $peerP->AddElement('(&nbsp;');
+                  $peerP->AddElement('( ');
                   foreach ($this->get_array_of_peers($parent_id) as $peer) {
                      $count++;
                      if ($peer->id != $this->id) {
@@ -270,7 +248,7 @@
                      } else {
                         $peerP->AddElement($count);
                      }
-                     $peerP->AddElement('&nbsp;');
+                     $peerP->AddElement(' ');
                   }
                   $peerP->AddElement(')</br>');
                }
@@ -303,27 +281,21 @@
       }
       */
 
-      function depc_make_thumbnail($width, $height, $src, $dst)
-      {
-         system("/usr/bin/convert" . " -geometry " . $width. "x" . $height . " \"" . $src . "\" \"" . $dst . "\"");
-         return filesize($dst);
-      }
-
       function MakeThumbnail ($max_x, $height, $sourcefile, $targetfile)
       {
          $picsize=getimagesize($sourcefile);
          $source_x = $picsize[0];
          $source_y  = $picsize[1];
          switch ($picsize[2]) {
-            case 1:
+            case IMAGETYPE_GIF:
                $source_id = imageCreateFromGif($sourcefile);
             break;
 
-            case 2:
+            case IMAGETYPE_JPEG:
                $source_id = imageCreateFromJpeg($sourcefile);
             break;
 
-            case 3:
+            case IMAGETYPE_PNG:
                $source_id = imageCreateFromPng($sourcefile);
             break;
          }
@@ -338,16 +310,16 @@
                                       $source_x,$source_y);
          imagedestroy($source_id);
          switch ($picsize[2]) {
-            case 1:
+            case IMAGETYPE_GIF:
                die('gif support?');
             break;
 
-            case 2:
-               imagejpeg($target_id,$targetfile,100);
+            case IMAGETYPE_JPEG:
+               imagejpeg($target_id, $targetfile);
             break;
 
-            case 3:
-               imagepng($target_id,$targetfile,100);
+            case IMAGETYPE_PNG:
+               imagepng($target_id, $targetfile);
             break;
          }
          return true;

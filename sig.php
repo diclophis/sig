@@ -1,13 +1,6 @@
 <?php
 
 /*
-Plugin Name: SiG Directory System
-Plugin URI: http://sig.sf.net/wordpress/
-Description: To provide a solution for member Directories
-Version: 0.0.3
-Author: Jon Bardin
-Author URI: http://sig.sf.net
-
 Copyright 2005  Jon Bardin  (email : diclophis@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
@@ -25,7 +18,7 @@ Copyright 2005  Jon Bardin  (email : diclophis@gmail.com)
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-$sys_dbhost = '127.0.0.1';
+$sys_dbhost = 'sig-mysqld';
 $sys_dbuser = 'sig';
 $sys_dbpasswd = 'password';
 $sys_dbname = 'sig';

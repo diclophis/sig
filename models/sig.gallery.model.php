@@ -246,8 +246,8 @@ $mod = 1, $modHtmlAlt = '<br />') {
    return $return;
    }
 
-   function getImageHtml ($archiveName, $folderIndex, $imageIndex, $parentHtmlFormat = '<p align="center"><a href="%4$s%3$s/%2$s">%1$s</a>&nbsp;',
-                                                                $nextHtmlFormat = '<a href="%5$s%4$s/%3$s,%2$s">%1$s</a>&nbsp;',
+   function getImageHtml ($archiveName, $folderIndex, $imageIndex, $parentHtmlFormat = '<p align="center"><a href="%4$s%3$s/%2$s">%1$s</a> ',
+                                                                $nextHtmlFormat = '<a href="%5$s%4$s/%3$s,%2$s">%1$s</a> ',
                                                                 $imageHtmlFormat = '</p><p align="center"><img src="%5$s%4$s/%3$s,%2$s.%1$s" alt="%2$s" title="%1$s"></p>') {
    global $readerUrl;
 

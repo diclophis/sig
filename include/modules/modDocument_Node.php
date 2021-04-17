@@ -107,7 +107,7 @@
          $p = new Tag('p');
          $p->AddElement($this->filesize_format(filesize($this->ImagePath($filename))));
          $a = new Tag('a', array('href'=>$this->ImageUrl($filename)));
-         $a->AddElement('&nbsp;Download');
+         $a->AddElement('Download');
          $p->AddElement($a);
          $container->AddElement($p);
       }

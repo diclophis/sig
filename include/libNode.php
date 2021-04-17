@@ -724,13 +724,13 @@
          $breadcrumbLegend = new Tag('legend');
          $breadcrumbLegend->AddElement($aA);
          $breadcrumbFieldset->AddElement($breadcrumbLegend);
-         $breadcrumbFieldset->AddElement('&nbsp;/&nbsp;');
+         $breadcrumbFieldset->AddElement(' / ');
          $a = (new Tag('a', array('href'=>'?model=Explorer')));
          $a->AddElement('Explorer');
          $breadcrumbFieldset->AddElement($a);
          $breadcrumbs = array_reverse($this->bread_crumb());
          foreach ($breadcrumbs as $crumb) {
-            $breadcrumbFieldset->AddElement('&nbsp;/&nbsp;');
+            $breadcrumbFieldset->AddElement(' / ');
             $a = (new Tag('a', array('href'=>'?page=sig&model=Explorer&node_ids[]='.$crumb['id'])));
             $a->AddElement($crumb['title']);
             $breadcrumbFieldset->AddElement($a);
@@ -744,10 +744,10 @@
          $breadcrumbFieldset = new Tag('div', array('id'=>'breadcrumb'));
          $aA = (new Tag('a', array('href'=>'index.php')));
          $aA->AddElement('Home');
-         $breadcrumbFieldset->AddElement('&nbsp;/&nbsp;');
+         $breadcrumbFieldset->AddElement(' / ');
          $breadcrumbs = array_reverse($this->bread_crumb());
          foreach ($breadcrumbs as $crumb) {
-            $breadcrumbFieldset->AddElement('&nbsp;/&nbsp;');
+            $breadcrumbFieldset->AddElement(' / ');
             $a = (new Tag('a', array('href'=>'?active_id='.$crumb['id'])));
             $a->AddElement($crumb['title']);
             $breadcrumbFieldset->AddElement($a);

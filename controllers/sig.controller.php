@@ -45,29 +45,9 @@ class SiG_Controller {
       return '';
    }
 
-//TODO fix this
    function HeadElement ($admin = FALSE)
    {
       $head = new Tag('head');
-      $cssLink = new Tag('link', array(
-         'rel'=>'stylesheet', 
-         'href'=>SiG_Controller::BaseUrl().'/css/style.css', 
-         'type'=>'text/css'));
-      $head->AddElement($cssLink);
-if ($admin) {
-      $head->AddElement(
-'
-      <script type="text/javascript" src="'.SiG_Controller::BaseUrl().'/js/prototype-1.4.0.js"></script>
-      <script type="text/javascript" src="'.SiG_Controller::BaseUrl().'/js/behaviour-1.0.0.js"></script>
-      <script type="text/javascript" src="'.SiG_Controller::BaseUrl().'/js/scriptaculous-dist/src/scriptaculous.js"></script>
-      <script type="text/javascript" src="'.SiG_Controller::BaseUrl().'/js/onload.js"></script>
-      <script type="text/javascript">
-      Behaviour.addLoadEvent (bodyOnLoad);
-      </script>
-'
-      );
-}
-      $head->AddElement(SiG_Controller::GoogleUrchin());
       return $head;
    }
 
@@ -81,21 +61,6 @@ if ($admin) {
    {
       return '1';
    }
-
-   function GoogleUrchin ()
-   {
-      return $code = '
-      <!-- google urchin code goes here -->
-      ';
-   }
-
-   function GoogleAdsense ()
-   {
-      return $code = '
-      <!-- google adsense code goes here -->
-      ';
-   }
-
 }
 
 ?>

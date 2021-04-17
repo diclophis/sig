@@ -33,15 +33,6 @@ class SiG_Admin_Model extends SiG_Model {
          $container->AddElement($tableFieldset);
          $i = 0;
          if (SiG_Admin_Model::TablesExist()) {
-         /*
-            $templateFieldset = new Tag('fieldset'); 
-            $templateLegend = new Tag('legend');
-            $templateLegend->AddElement('Template File');
-            $templateButton = new Tag('input', array('type'=>'submit', 'name'=>'action', 'value'=>'Install Template'));
-            $templateFieldset->AddElement($templateLegend);
-            $templateFieldset->AddElement($templateButton);
-            $container->AddElement($templateFieldset);
-         */
             $featuresFieldset = new Tag('fieldset');
             $featuresLegend = new Tag('legend');
             $featuresLegend->AddElement('Features');
@@ -106,17 +97,13 @@ class SiG_Admin_Model extends SiG_Model {
       $this->doDefault($container);
    }
 
-//TODO fix this
    function doInstall_Database_Tables ($container)
    {
-      //require_once(ABSPATH.'wp-admin/upgrade-functions.php');
-
       $creates = sprintf(file_get_contents(SiG_Controller::BasePath().'/include/SiG.sql'),
              SiG_Controller::GetTablePrefix(),
              SiG_Controller::GetTablePrefix(),
              SiG_Controller::GetTablePrefix());
-//echo $sql;
-//die();
+
       $queries = explode(";", $creates);
       foreach ($queries as $sql) {
          $query = new Query($sql);
@@ -188,12 +175,11 @@ class SiG_Admin_Model extends SiG_Model {
       $this->doInstall_Database_Tables($container);
    }
 
-//TODO fix this
+   //TODO fix this
    function TablesExist ()
    {
       global $SiG_Tables;
 
-      //$tables = array('node_data', 'property_data', 'property_types');
       $exist = TRUE;
       foreach ($SiG_Tables as $table) {
          $sql = 
@@ -207,35 +193,10 @@ class SiG_Admin_Model extends SiG_Model {
          if (!is_object($result)) {
             $exist = FALSE;
          }
-         //$var = ($query->execute('array'));
-         //if ($var[0] != SiG_Controller::GetTablePrefix().$table) {
-         //   $exist = FALSE;
-         //}
       }
 
       return $exist;
    }
-/*
-   function doInstall_Template ($container)
-   {
-      $messageFieldset = new Tag('fieldset');
-      $messageLegend = new Tag('legend');
-      $messageLegend->AddElement('Message');
-      $messageFieldset->AddElement($messageLegend);
-      $p = new Tag('p');
-      if (copy(SiG_Controller::BasePath().'/templates/sig-page-template.php', TEMPLATEPATH.'/sig-page-template.php')) {
-         $p->SetAttribute('class', 'sig_notice_ok');
-         $p->AddElement('sig-page-template installed');
-      } else {
-         $p->SetAttribute('class', 'sig_notice_error');
-         $p->AddElement('Unable to install sig-page-template.php');
-      }
-      $messageFieldset->AddElement($p);
-      $container->AddElement($messageFieldset);
-
-      $this->doDefault($container);
-   }
-*/
 }
 
 ?>

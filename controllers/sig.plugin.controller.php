@@ -28,7 +28,6 @@ class SiG_Plugin_Controller extends SiG_Controller {
          $bodyContainer->AddElement($navigationDiv);
          $newsDiv = new Tag('div', array('id'=>'news'));
          //TODO what is the default page?
-         //$newsNode = Node::new_instance(11);
          $children = Node::GetSystemNodeByTitle("Pages")->get_array_of_children();
          if (count($children) > 0) {
            $newsNode = $children[0];
@@ -42,19 +41,36 @@ class SiG_Plugin_Controller extends SiG_Controller {
          $bodyContainer->AddElement($contentDiv);
       }
 
-
       $footerDiv = new Tag('div', array('id'=>'footer'));
-      //$footerDiv->AddElement(SiG_Controller::GoogleAdsense());
       $bodyContainer->AddElement($footerDiv);
       $htmlContainer->AddElement(SiG_Controller::HeadElement());
       $htmlContainer->AddElement($bodyContainer);
+
+      //NOTE: this is where html is SSR
       echo $htmlContainer->DrawElements();
    }
 
    function NavigationElements ($container)
    {
+      global $PHP_SELF, $QUERY_STRING, $siteUrl;
+
       $root = Node::GetSystemNodeByTitle("Pages");
       if (!$root) {
+
+
+      //$htmlContainer = new Tag('html');
+      //$bodyContainer = new Tag('body');
+      //$navigationDiv = new Tag('div', array('id'=>'navigation'));
+
+      //$navigationDiv->AddElement("FOO");
+      //$bodyContainer->AddElement($navigationDiv);
+      //$htmlContainer->AddElement($bodyContainer);
+      //echo $htmlContainer->DrawElements();
+
+
+        header("Location: $siteUrl/admin.php");
+
+
         throw new Exception("MAKE BASE ROOT NODE");
       }
 
@@ -71,38 +87,43 @@ class SiG_Plugin_Controller extends SiG_Controller {
 
    function BreadcrumbElement ($pageNode, $activeNode)
    {
-      $breadcrumbFieldset = new Tag('div', array('id'=>'breadcrumb'));
-
-      $homeA = new Tag('a', array('href'=>'?'));
-      $homeA->AddElement('SiG');
-      $breadcrumbFieldset->AddElement($homeA);
-
       if ($pageNode->id) {
-         $breadcrumbFieldset->AddElement('&nbsp;/&nbsp;');
+         $breadcrumbFieldset = new Tag('div', array('id'=>'breadcrumb'));
+         $homeA = new Tag('a', array('href'=>'?'));
+         $homeA->AddElement('SiG');
+         $breadcrumbFieldset->AddElement($homeA);
+
+         $breadcrumbFieldset->AddElement(' / ');
          $pageA = (new Tag('a', array('href'=>'?node_id='.$pageNode->id)));
          $pageA->AddElement($pageNode->TitleValue());
          $breadcrumbFieldset->AddElement($pageA);
+
+         return $breadcrumbFieldset;
       }
 
       if ($activeNode->id) {
+         return $activeNode->BreadcrumbFieldsetElement();
+
          //$breadcrumbs = ($activeNode->bread_crumb());
          //foreach ($breadcrumbs as $crumb) {
-            //$breadcrumbFieldset->AddElement('&nbsp;/&nbsp;');
-         //   if (in_array($pageNode->id, $crumb['parents'])) { break; }
-            $breadcrumbFieldset->AddElement('&nbsp;/&nbsp;');
-            $a = (new Tag('a', array('href'=>'?node_id='.$pageNode->id.'&active_id='.$activeNode->id)));
-            $a->AddElement($activeNode->TitleValue());
-            $breadcrumbFieldset->AddElement($a);
+         //   //$breadcrumbFieldset->AddElement(' / ');
+         //   //if (in_array($pageNode->id, $crumb['parents'])) { break; }
+         //   $breadcrumbFieldset->AddElement(' / ');
+         //   $a = (new Tag('a', array('href'=>'?node_id='.$pageNode->id.'&active_id='.$activeNode->id)));
+         //   $a->AddElement($activeNode->TitleValue());
+         //   $breadcrumbFieldset->AddElement($a);
          //}
       }
+
+      $breadcrumbFieldset = new Tag('div', array('id'=>'breadcrumb'));
+      $homeA = new Tag('a', array('href'=>'?'));
+      $homeA->AddElement('SiG');
+      $breadcrumbFieldset->AddElement($homeA);
       return $breadcrumbFieldset;
    }
 
-
    function Permalink ()
    {
-   //TODO wtf is this for?
-      //return '/?node_id='.SiG_Session::Instance()->Request('node_id', 33);
       $children = Node::GetSystemNodeByTitle("Pages")->get_array_of_children();
       if (count($children) > 0) {
         $newsNode = $children[0];

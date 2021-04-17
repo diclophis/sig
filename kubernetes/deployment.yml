@@ -23,6 +23,20 @@ spec:
   selector:
     name: sig
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sig-mysqld
+  labels:
+    ttl: '16'
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3306
+    protocol: TCP
+  selector:
+    name: sig-mysqld
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -58,6 +72,52 @@ spec:
     metadata:
       labels:
         name: sig
+        ttl: '16'
+    spec:
+      volumes:
+      - name: run
+        emptyDir: {}
+      containers:
+      - name: sig-bardin-haus-app
+        image: sig:latest
+        imagePullPolicy: IfNotPresent
+        volumeMounts: 
+        - mountPath: /var/run/apache2
+          name: run
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 20m
+        command:
+        - "apache2"
+        - "-D"
+        - "FOREGROUND"
+        env: &1
+        - name: APP_ENV
+          value: production
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sig-mysqld
+  labels:
+    ttl: '16'
+spec:
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      name: sig-mysqld
+  template:
+    metadata:
+      labels:
+        name: sig-mysqld
         ttl: '16'
     spec:
       volumes:
@@ -100,22 +160,3 @@ spec:
         - name: config
           mountPath: /etc/mysql/conf.d/mysql-custom.cnf
           subPath: mysql-custom.cnf
-      - name: sig-bardin-haus-app
-        image: sig:latest
-        imagePullPolicy: IfNotPresent
-        volumeMounts: 
-        - mountPath: /var/run/apache2
-          name: run
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            memory: 100Mi
-            cpu: 20m
-        command:
-        - "apache2"
-        - "-D"
-        - "FOREGROUND"
-        env: &1
-        - name: APP_ENV
-          value: production
