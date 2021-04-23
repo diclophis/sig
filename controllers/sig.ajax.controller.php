@@ -1,20 +1,10 @@
 <?php
 
 class SiG_Ajax_Controller extends SiG_Controller {
-   //var responses = array();
-
    function SiG_Ajax_Controller ()
    {
 
    }
-
-   /*
-   function CreateModelFromRequest ()
-   {
-      $modelName = isset($_REQUEST['model']) ? $_REQUEST['model'] : 'SiG_Ajax_Model';
-      return new $modelName();
-   }
-   */
 
    function SetHeaders ()
    {
@@ -44,13 +34,5 @@ class SiG_Ajax_Controller extends SiG_Controller {
       echo '</ajax-response>';
    }
 }
-
-/*
-$controller = new SiG_Ajax_Controller ();
-$controller->SetHeaders();
-
-$model = SiG_Ajax_Controller::CreateModelFromRequest();
-$model->SetViewFromRequest();
-*/
 
 ?>

@@ -28,41 +28,6 @@ class WordpressPage_Node extends Folder_Node {
       return $insert_id;
    }
 
-   function create ($nodeValues, $newStruct)
-   {
-      $query = sprintf(
-           "INSERT INTO `wp_posts` "
-         . "( `ID` , `post_author` , `post_date` , `post_date_gmt` , "
-         . "`post_content` , `post_title` , `post_category` , `post_excerpt` , "
-         . "`post_status` , `comment_status` , `ping_status` , `post_password` , "
-         . "`post_name` , `to_ping` , `pinged` , `post_modified` , `post_modified_gmt` , "
-         . "`post_content_filtered` , `post_parent` , `guid` , `menu_order` ) "
-         . "VALUES "
-         . "('', '1', 'NOW()', '', "
-         . "'', '', '0', '', "
-         . "'static', 'open', 'open', '', "
-         . "'', '', '', 'NOW()', '', "
-         . "'', '0', '', '0');"
-      );
-
-      $result = new Query($query);
-      self::insert_id($result->insertid);
-
-      //add_post_meta(self::insert_id(), 'SiG Meta Tag', 'This Page was created by the SiG Plugin, do not edit content', true);
-      //add_post_meta(self::insert_id(), '_wp_page_template', 'sig-page-template.php', true);
-
-      return parent::create ($nodeValues, $newStruct);
-   }
-
-   function delete ()
-   {
-      $query = sprintf("DELETE FROM wp_posts WHERE ID='%d'",
-                       mysqli_real_escape_string($this->page_id->value));
-
-      $results = new Query($query);
-      return parent::delete();
-   }
-
    function set_page_id ($name, $value)
    {
       if ($this->new) {
@@ -89,12 +54,6 @@ class WordpressPage_Node extends Folder_Node {
          } else {
             $page_id = $this->page_id->value;
          }
-
-         //$query = sprintf("UPDATE `wp_posts` SET post_title='%s', post_name='%s' WHERE ID='%d'",
-         //                 mysql_real_escape_string($value),
-         //                 mysql_real_escape_string($value),
-         //                 mysql_real_escape_string($page_id));
-         //$result = new Query($query);
       }
 
       $inputElement = new Tag('input', array('type'=>'text', 'name'=>'struct['.$name.']', 'value'=>$value));
@@ -114,10 +73,6 @@ class WordpressPage_Node extends Folder_Node {
          } else {
             $page_id = $this->page_id->value;
          }
-         //$query = sprintf("UPDATE `wp_posts` SET post_content='%s' WHERE ID='%d'",
-         //                 mysql_real_escape_string(serialize($this->id)),
-         //                 mysql_real_escape_string($page_id));
-         //$results = new Query($query);
 
          $importedNodesElement = new Tag('select', array('name'=>'nodes_to_detach[]', 'multiple'=>'multiple', 'size'=>'10'));
          foreach ($this->get_array_of_children() as $child) {
