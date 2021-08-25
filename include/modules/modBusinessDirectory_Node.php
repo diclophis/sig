@@ -63,10 +63,6 @@ class BusinessDirectory_Node extends Node {
       $this->get_child(0)->RecursiveOptionElement(array(), array(), $selectElement, 0,
                             array('BusinessDirectoryEntries_Node'), TRUE);
 
-                                           //array());
-      //$attachButton = new Tag('input', array('type'=>'submit', 'name'=>'action', 'value'=>'Attach'));
-      //$detachButton = new Tag('input', array('type'=>'submit', 'name'=>'action', 'value'=>'Detach'));
-
       $searchButton = new Tag('input', array('type'=>'submit', 'name'=>'status', 'value'=>'Search'));
 
       $form->AddElement($selectElement);
@@ -77,7 +73,6 @@ class BusinessDirectory_Node extends Node {
       }
  
       $container->AddElement($div);
-
    }
 }
 

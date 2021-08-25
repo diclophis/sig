@@ -56,20 +56,8 @@ class SiG_Plugin_Controller extends SiG_Controller {
 
       $root = Node::GetSystemNodeByTitle("Pages");
       if (!$root) {
-
-
-      //$htmlContainer = new Tag('html');
-      //$bodyContainer = new Tag('body');
-      //$navigationDiv = new Tag('div', array('id'=>'navigation'));
-
-      //$navigationDiv->AddElement("FOO");
-      //$bodyContainer->AddElement($navigationDiv);
-      //$htmlContainer->AddElement($bodyContainer);
-      //echo $htmlContainer->DrawElements();
-
-
+        // 3xx redirect
         header("Location: $siteUrl/admin.php");
-
 
         throw new Exception("MAKE BASE ROOT NODE");
       }
@@ -103,16 +91,6 @@ class SiG_Plugin_Controller extends SiG_Controller {
 
       if ($activeNode->id) {
          return $activeNode->BreadcrumbFieldsetElement();
-
-         //$breadcrumbs = ($activeNode->bread_crumb());
-         //foreach ($breadcrumbs as $crumb) {
-         //   //$breadcrumbFieldset->AddElement(' / ');
-         //   //if (in_array($pageNode->id, $crumb['parents'])) { break; }
-         //   $breadcrumbFieldset->AddElement(' / ');
-         //   $a = (new Tag('a', array('href'=>'?node_id='.$pageNode->id.'&active_id='.$activeNode->id)));
-         //   $a->AddElement($activeNode->TitleValue());
-         //   $breadcrumbFieldset->AddElement($a);
-         //}
       }
 
       $breadcrumbFieldset = new Tag('div', array('id'=>'breadcrumb'));

@@ -32,8 +32,7 @@ class Authentication {
     if (isset($LOGGED_IN)) {
       return $LOGGED_IN;
     }
-//echo "<pre>";
-//print_r($GLOBALS);
+
     if ($GLOBALS["user_name"] && $GLOBALS["id_hash"]) {
       $hash=md5($GLOBALS["user_name"].$hidden_hash_var);
       if ($hash == $GLOBALS["id_hash"]) {
@@ -49,16 +48,16 @@ class Authentication {
     }
   }
 
-   function user_login ($user_name,$password) {
-               Authentication::user_set_tokens($user_name, $data[user_id]); //$user_name);
+  function user_login ($user_name,$password) {
+     Authentication::user_set_tokens($user_name, $data[user_id]); //$user_name);
   }
 
-   function user_logout() {
+  function user_logout() {
       session_destroy();
       return true;
   }
 
-   function user_set_tokens($user_name, $user_id) {
+  function user_set_tokens($user_name, $user_id) {
       global $hidden_hash_var;
 
       session_start();

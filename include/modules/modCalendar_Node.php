@@ -78,7 +78,7 @@ class Calendar_Node extends Node {
                   foreach ($todaysEvents as $event) {
                      if (in_array($event, $hourToEvents[$hour->getTimestamp()])) {
                         $td = new Tag('td', array('class'=>'sig_calendar_event_hour'));
-                        //$td->AddElement($event->title->value);
+                        //$td->AddElement($event->title->value); //TODO ????
                      } else {
                         $td = new Tag('td', array('class'=>'sig_calendar_day_hour'));
                      }

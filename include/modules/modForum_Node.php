@@ -80,6 +80,7 @@
 
          switch ($this->struct['node_type']):
             case "Forum_Node":
+               //TODO: rebuild out forum, add at least 1 functional "popularity" sorting module, simple sql, launch into site
                //$parentNode = Node::new_instance($this->parent_id);
                //if ($parentNode->parent_id) {
                //   $thisA = new Tag('a', array('href'=>SiG_Plugin_Controller::Permalink().'&active_id='.$parentNode->id));
@@ -228,11 +229,8 @@
          $ptot = @array_count_values($this->get_num_of_properties_in_children('node_type'));
          if (!array_key_exists('Forum_Node', $ptot)) {
             $form = new Tag('form', array('action'=>SiG_Plugin_Controller::Permalink(), 'method'=>'post'));
-                  //$activeIdElement = new Tag('input', array('type'=>'hidden', 'name'=>'active_id', 'value'=>$active
             $node = New Thread_Node(NULL);
             $node->primary_parent_id = $this->id;
-                //$node->user_id = 1;//$GLOBALS[userData][user_id];
-                 //$node->group_id = 1;//$GLOBALS[userData][group_id];
             $node->HtmlForm($form);
             $voteButton = new Tag('input', array('type'=>'submit', 'name'=>'action', 'value'=>'Post'));
             $activeIdElement = new Tag('input', array('type'=>'hidden', 'name'=>'active_id', 'value'=>$this->id));
@@ -243,7 +241,6 @@
             $container->AddElement($makePost);
             $container->AddElement($form);
          }
-
       }
    }
 

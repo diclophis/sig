@@ -30,7 +30,6 @@ class SiG_Session extends SiG_Model {
    function Dispatch ($container, $model, $actionKey, $defaultAction, $actionPrefix = 'do')
    {
       $action = SiG_Session::Instance()->Request($actionKey, $defaultAction);
-      //isset($_REQUEST['status']) ? $_REQUEST['status'] : 'Default';
 
       $action = str_replace(' ', '_', $action);
 
@@ -65,7 +64,6 @@ class SiG_Session extends SiG_Model {
    function GetUserData ()
    {
       global $user_ID;
-      //return get_userdata($user_ID);
       $user->ID = 1;
       $user->user_nickname = "Jon";
       $user->user_level = 10;

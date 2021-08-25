@@ -13,7 +13,6 @@ class SnippetSystem_Node extends System_Node {
       $div->AddElement('This area can be used to store your code snippets');
       return $div;
    }
-
 }
 
 ?>

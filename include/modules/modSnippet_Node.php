@@ -31,7 +31,6 @@ class Snippet_Node extends Node {
 
       return $p->DrawElements();
    }
-
-   
 }
+
 ?>

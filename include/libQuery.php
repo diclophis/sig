@@ -3,6 +3,8 @@
 class Query {
 	function Query ($query, $debug = 1) {
 /*
+      //TODO: remove wordpress support??????
+
       global $wpdb;
 
       $wpdb->query($query);
@@ -41,24 +43,17 @@ class Query {
 		}
 
 		if ($debug) {
-         //$db->error();
+      //$db->error();
 			//echo $db->debug_msg;
 		}
 	}
 
-	function execute ($type = 'object') {
+	function execute($type = 'object') {
 		global $db, $sys_dbname;
 
 		$fetch = 'fetch_'.$type;
 
-
 		return $db->$fetch($this->result);
-
-      /*
-      if ($this->pointer < count($this->results)) {
-         return $this->results[$this->pointer++];
-      }
-      */
 	}
 }
 

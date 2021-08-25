@@ -100,7 +100,8 @@ class BusinessDirectoryEntry_Node extends Node {
            'WA' => 'Washington',
            'WV' => 'West Virginia',
            'WI' => 'Wisconsin',
-           'WY' => 'Wyoming');
+           'WY' => 'Wyoming'
+    );
 
    function TitleValue ()
    {
@@ -205,7 +206,7 @@ class BusinessDirectoryEntry_Node extends Node {
       if ($nodesToAttach) {
          foreach ($nodesToAttach as $nodeId) {
             $node = Node::new_instance($nodeId);
-            $node->new = TRUE; //$this->new;
+            $node->new = TRUE;
             $node->AttachTo($this->id);
          }
       }
@@ -219,7 +220,7 @@ class BusinessDirectoryEntry_Node extends Node {
       if ($nodesToDetach) {
          foreach ($nodesToDetach as $nodeId) {
             $node = Node::new_instance($nodeId);
-            $node->new = TRUE; //$this->new;
+            $node->new = TRUE;
             $node->DetachFrom($this->id);
          }
       }

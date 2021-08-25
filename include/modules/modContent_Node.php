@@ -42,6 +42,7 @@
          return $html = '<a href="'.SiG_Plugin_Controller::Permalink().'&active_id='.$ar->id.'">';
       }
 
+    //TODO: rebuild _all lib and system documentation_
       /**
       * Format body property
       *

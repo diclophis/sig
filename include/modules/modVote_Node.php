@@ -7,8 +7,6 @@
                            "choice"           => array( "prop_type" => "callback",
                                                        "name" => "get_option_dropdown"));
 
-      //var $allowed_children_types = array ();
-
       function hidden_title ($value)
       {
          $titleElement = new Tag('input', array('name'=>'struct[title]', 'value'=>$_SERVER['REMOTE_ADDR']));
@@ -32,8 +30,6 @@
 
             return $select;
          } else {
-            //throw exception
-            //return false;
             die('Exception: Vote Nodes cannot be a child of root');
          }
       }

@@ -3,19 +3,7 @@
 class SiG_Admin_Controller extends SiG_Controller {
    function SiG_Admin_Controller ()
    {
-      //add_action('admin_menu', array($this, 'actionAdminMenu'));
-      //add_action('admin_head', array($this, 'actionAdminHead'));
       $this->Main();
-   }
-
-   function actionAdminMenu ()
-   {
-      //add_management_page('SiG', 'SiG', 0, SiG_Controller::BasePath(), array($this, 'Main'));
-   }
-
-   function actionAdminHead ()
-   {
-      echo '<!-- Admin::actionAdminHead -->';
    }
 
    function Main ()
@@ -34,50 +22,12 @@ class SiG_Admin_Controller extends SiG_Controller {
 
       SiG_Session::Dispatch($form, $this, 'model', $default);
 
-
-      //$defaultFieldset = new Tag('fieldset');
-      //$defaultLegend = new Tag('legend');
-      //$defaultLegend->AddElement('SiG Management Interface');
-      //$defaultFieldset->AddElement($defaultLegend);
-      //$defaultFieldset->AddElement($configButton);
-      //$form->AddElement($defaultFieldset);
-
-      //$li->AddElement($configButton);
-      //$ul->AddElement($li);
-
       $container->AddElement($form);
       $bodyContainer->AddElement($container);
       $htmlContainer->AddElement(SiG_Controller::HeadElement(TRUE));
       $htmlContainer->AddElement($bodyContainer);
       echo $htmlContainer->DrawElements();
-
-      //echo $container->DrawElements();
    }
-
-   //function doDefault ($container)
-   //{
-   //   $defaultFieldset = new Tag('fieldset');
-   //   $defaultLegend = new Tag('legend');
-   //   $defaultLegend->AddElement('SiG Management Interface');
-   //   $defaultFieldset->AddElement($defaultLegend);
-
-   //   $ul = new Tag('ul');
-
-
-   //      $li = new Tag('li');
-   //      $li->AddElement($explorerButton);
-   //      $ul->AddElement($li);
-
-   //   //} else {
-   //   //   $p = new Tag('p', array('class'=>'sig_notice_error'));
-   //   //   $p->AddElement('You must configure SiG for the first time');
-   //   //   $defaultFieldset->AddElement($p);
-   //   //}
-
-
-   //   $defaultFieldset->AddElement($ul);
-   //   $container->AddElement($defaultFieldset);
-   //}
 
    function doExplorer ($container)
    {

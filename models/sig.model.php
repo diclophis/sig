@@ -2,6 +2,9 @@
 
 class SiG_Model {
    /*
+
+   //TODO: wtf was going on here
+
    var $registeredModels;
 
    function Instance ()

@@ -57,11 +57,14 @@ class Event_Node extends Node {
          } while ($curdate <= $end);
          return $dates;
       } else {
+
+//TODO?????
 //echo $start;
 //echo date('r', $start);
 //echo '|';
 //echo $end;
 //echo datE('r', $end);
+
          die('Exception: Start Time must be before End Day');
       }
    }
@@ -71,8 +74,10 @@ class Event_Node extends Node {
    {
       $hours = array();
       $start_time_timestamp = strtotime($this->start_day->value.' '.$this->start_time->value);
+
 //echo $this->end_day->value.' '.$this->end_time->value;
 //echo '<br>';
+
       $end_time_timestamp = strtotime($this->end_day->value.' '.$this->end_time->value);
       foreach ($this->calc_hours($start_time_timestamp, $end_time_timestamp, 1) as $hour_timestamp) {
          $hours[] = Calendar_Factory::createByTimestamp('Hour', $hour_timestamp);
@@ -102,7 +107,6 @@ class Event_Node extends Node {
          $parentParentNode->get_child(0)->RecursiveOptionElement(array(), $childrenIds, $selectElement, 0, 
                             array('BusinessDirectoryEntries_Node'), TRUE); //, 0, 
 
-                                           //array());
          $attachButton = new Tag('input', array('type'=>'submit', 'name'=>'action', 'value'=>'Attach'));
          $detachButton = new Tag('input', array('type'=>'submit', 'name'=>'action', 'value'=>'Detach'));
          $div->AddElement($selectElement);
@@ -123,7 +127,7 @@ class Event_Node extends Node {
       if ($nodesToAttach) {
          foreach ($nodesToAttach as $nodeId) {
             $node = Node::new_instance($nodeId);
-            $node->new = TRUE; //$this->new;
+            $node->new = TRUE;
             $node->AttachTo($this->id);
          }
       }
@@ -137,7 +141,7 @@ class Event_Node extends Node {
       if ($nodesToDetach) {
          foreach ($nodesToDetach as $nodeId) {
             $node = Node::new_instance($nodeId);
-            $node->new = TRUE; //$this->new;
+            $node->new = TRUE;
             $node->DetachFrom($this->id);
          }
       }
@@ -145,26 +149,26 @@ class Event_Node extends Node {
       $this->doEdit($container);
    }
 
-function calc_duration ($time_a,$time_b) {
-   $d = abs($time_b-$time_a);
-   $duration = array();
-   if ($d >= 86400) {
-      $duration['days'] = floor($d / 86400);
-      $d %= 86400;
+   function calc_duration ($time_a,$time_b) {
+      $d = abs($time_b-$time_a);
+      $duration = array();
+      if ($d >= 86400) {
+         $duration['days'] = floor($d / 86400);
+         $d %= 86400;
+      }
+      if (isset($duration['days']) || $d >= 3600) {
+         if ($d) $duration['hours'] = floor($d / 3600);
+         else $duration['hours'] = 0;
+         $d %= 3600;
+      }
+      if (isset($duration['hours']) || $d >= 60) {
+         if ($d) $duration['minutes'] = floor($d / 60);
+         else $duration['minutes'] = 0;
+         $d %= 60;
+      }
+      $duration['seconds'] = $d;
+      return $duration;
    }
-   if (isset($duration['days']) || $d >= 3600) {
-      if ($d) $duration['hours'] = floor($d / 3600);
-      else $duration['hours'] = 0;
-      $d %= 3600;
-   }
-   if (isset($duration['hours']) || $d >= 60) {
-      if ($d) $duration['minutes'] = floor($d / 60);
-      else $duration['minutes'] = 0;
-      $d %= 60;
-   }
-   $duration['seconds'] = $d;
-   return $duration;
-}
 
 
    function ActiveHtmlData ($container, $parentNode = NULL, $activeNode = NULL)

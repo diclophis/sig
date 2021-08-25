@@ -8,14 +8,14 @@
          $query .= "WHERE name='{$this->name}' LIMIT 1";
          $results = New Query($query);
          if ($data = $results->execute()) {
-            //HACK
+            //HACK //LOL
             $this->id = $data->id;
          } else {
             $this->id = 0;
             Debug::add_message(__file__, __line__, "fail of proptype id fetch of ".$name, 'error');
             $q = new Query('INSERT INTO '.SiG_Controller::GetTablePrefix().'property_types VALUES (NULL, "'.$name.'")');
             if ($data2 = $results->execute()) {
-               //return new Property_type($name);
+               //return new Property_type($name); //TODO: what was all this about???
             } else {
                Debug::add_message(__file__, __line__, "fail to create proptype id of ".$name, 'error');
             }
@@ -82,12 +82,12 @@
                 . SiG_Controller::GetTablePrefix()."node_data.id="
                 . SiG_Controller::GetTablePrefix()."property_data.node_id "
                 //. "AND "
-                //. SiG_Controller::GetTablePrefix()."node_data.site_id='".SiG_Controller::GetSiteId()."' "
+                //. SiG_Controller::GetTablePrefix()."node_data.site_id='".SiG_Controller::GetSiteId()."' " //TODO: MULTI-TENANT!!!!! AUTO TLS
                 . "ORDER BY node_id DESC";
          $results = New Query($query);
          while ($data = $results->execute()) {
             $returnNode = Node::new_instance($data->node_id);
-            //TODO if ($returnNode->have_read_perms()) {
+            //TODO if ($returnNode->have_read_perms()) { //TODO: yeesh security !!!
                $return[$returnNode->id] = $returnNode;
             //}
          }

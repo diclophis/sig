@@ -732,8 +732,6 @@
          $breadcrumbFieldset->AddElement(' / ');
          $breadcrumbFieldset->AddElement($explorerButton);
 
-         //$a = (new Tag('a', array('href'=>'?model=Explorer')));
-         //$a->AddElement('Explorer');
          $breadcrumbFieldset->AddElement($a);
 
 
@@ -747,31 +745,10 @@
  
          return $breadcrumbFieldset;
       }
-/*
-      function BreadcrumbElement ()
-      {
-         $breadcrumbFieldset = new Tag('div', array('id'=>'breadcrumb'));
-         $aA = (new Tag('a', array('href'=>'index.php')));
-         $aA->AddElement('Home');
-         $breadcrumbFieldset->AddElement(' / ');
-         $breadcrumbs = array_reverse($this->bread_crumb());
-         foreach ($breadcrumbs as $crumb) {
-            $breadcrumbFieldset->AddElement(' / ');
-            $a = (new Tag('a', array('href'=>'?active_id='.$crumb['id'])));
-            $a->AddElement($crumb['title']);
-            $breadcrumbFieldset->AddElement($a);
-         }
- 
-         return $breadcrumbFieldset;
-      }
-*/
  
       function ListingFieldsetElement ()
       {
          $listingFieldset = new Tag('fieldset');
-         //$listingLegend = new Tag('legend');
-         //$listingLegend->AddElement('Listing');
-         //$listingFieldset->AddElement($listingLegend);
          $listingList = new Tag('ul', array('id'=>'listingList'));
          if ($this->get_num_of_children()) {
             foreach ($this->get_array_of_children() as $child) {
@@ -786,8 +763,6 @@
       {
          $submitFieldset = new Tag('fieldset');
          $submitLegend = new Tag('legend');
-         //$submitLegend->AddElement('Actions');
-         //$submitFieldset->AddElement($submitLegend);
          $editButton = new Tag('input', array('type'=>'submit', 'name'=>'action', 'value'=>'Edit'));
          $deleteButton = new Tag('input', array('type'=>'submit', 'name'=>'action', 'value'=>'Delete'));
          $repairButton = new Tag('input', array(
@@ -863,6 +838,7 @@
 
       function SetOrderBy ($parentId, $orderBy)
       {
+         //TODO: yeeesh, security updates.... !!!
          $query = "UPDATE "
                 . SiG_Controller::GetTablePrefix()."node_rel "
                 . "SET "

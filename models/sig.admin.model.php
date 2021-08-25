@@ -32,7 +32,6 @@ class SiG_Admin_Model extends SiG_Model {
 
          $container->AddElement($breadcrumbFieldset);
 
-
          $tableFieldset = new Tag('fieldset');
          $tableLegend = new Tag('legend');
          $tableLegend->AddElement('Database Table Management');
