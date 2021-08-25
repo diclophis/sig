@@ -27,7 +27,7 @@ ADD sig.php index.php admin.php /var/www/html/
 COPY controllers /usr/share/php/controllers/
 COPY include /usr/share/php/include/
 COPY models /usr/share/php/models/
-COPY templates /usr/share/php/templates/
+#COPY templates /usr/share/php/templates/
 COPY views /usr/share/php/views/
 
 RUN mkdir -p /var/www/html/images /var/www/html/tmp /var/www/html/images/fractals

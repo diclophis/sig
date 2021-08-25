@@ -719,15 +719,24 @@
       function BreadcrumbFieldsetElement ()
       {
          $breadcrumbFieldset = new Tag('fieldset');
-         $aA = (new Tag('a', array('href'=>'index.php')));
+         $aA = (new Tag('a', array('href'=>'index.php', 'target' => '_new')));
          $aA->AddElement('Site');
          $breadcrumbLegend = new Tag('legend');
          $breadcrumbLegend->AddElement($aA);
          $breadcrumbFieldset->AddElement($breadcrumbLegend);
+         
+         $configButton = new Tag('input', array('type'=>'submit', 'name'=>'model', 'value'=>'Configure'));
+         $explorerButton = new Tag('input', array('type'=>'submit', 'name'=>'model', 'value'=>'Explorer'));
+
+         $breadcrumbFieldset->AddElement($configButton);
          $breadcrumbFieldset->AddElement(' / ');
-         $a = (new Tag('a', array('href'=>'?model=Explorer')));
-         $a->AddElement('Explorer');
+         $breadcrumbFieldset->AddElement($explorerButton);
+
+         //$a = (new Tag('a', array('href'=>'?model=Explorer')));
+         //$a->AddElement('Explorer');
          $breadcrumbFieldset->AddElement($a);
+
+
          $breadcrumbs = array_reverse($this->bread_crumb());
          foreach ($breadcrumbs as $crumb) {
             $breadcrumbFieldset->AddElement(' / ');

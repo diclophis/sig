@@ -12,6 +12,27 @@ class SiG_Admin_Model extends SiG_Model {
    function doDefault ($container)
    {
       if (SiG_Session::Instance()->UserHavePerm()) {
+
+         //TODO: refactor to base mod bit???
+         $breadcrumbFieldset = new Tag('fieldset');
+         $aA = (new Tag('a', array('href'=>'index.php', 'target' => '_new')));
+         $aA->AddElement('Site');
+         $breadcrumbLegend = new Tag('legend');
+         $breadcrumbLegend->AddElement($aA);
+         $breadcrumbFieldset->AddElement($breadcrumbLegend);
+         
+         $configButton = new Tag('input', array('type'=>'submit', 'name'=>'model', 'value'=>'Configure'));
+         $explorerButton = new Tag('input', array('type'=>'submit', 'name'=>'model', 'value'=>'Explorer'));
+
+         $breadcrumbFieldset->AddElement($configButton);
+         $breadcrumbFieldset->AddElement(' / ');
+         $breadcrumbFieldset->AddElement($explorerButton);
+
+         $breadcrumbFieldset->AddElement($a);
+
+         $container->AddElement($breadcrumbFieldset);
+
+
          $tableFieldset = new Tag('fieldset');
          $tableLegend = new Tag('legend');
          $tableLegend->AddElement('Database Table Management');

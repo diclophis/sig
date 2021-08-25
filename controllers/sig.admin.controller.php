@@ -25,7 +25,26 @@ class SiG_Admin_Controller extends SiG_Controller {
 
       $container = new Tag('div', array('class' => 'wrap'));
       $form = new Tag('form', array('action'=>'?', 'method'=>'post', 'enctype'=>'multipart/form-data'));
-      SiG_Session::Dispatch($form, $this, 'model', 'Default');
+
+      $default = 'Configure';
+
+      if (SiG_Admin_Model::TablesExist()) {
+        $default = 'Explorer';
+      }
+
+      SiG_Session::Dispatch($form, $this, 'model', $default);
+
+
+      //$defaultFieldset = new Tag('fieldset');
+      //$defaultLegend = new Tag('legend');
+      //$defaultLegend->AddElement('SiG Management Interface');
+      //$defaultFieldset->AddElement($defaultLegend);
+      //$defaultFieldset->AddElement($configButton);
+      //$form->AddElement($defaultFieldset);
+
+      //$li->AddElement($configButton);
+      //$ul->AddElement($li);
+
       $container->AddElement($form);
       $bodyContainer->AddElement($container);
       $htmlContainer->AddElement(SiG_Controller::HeadElement(TRUE));
@@ -35,33 +54,30 @@ class SiG_Admin_Controller extends SiG_Controller {
       //echo $container->DrawElements();
    }
 
-   function doDefault ($container)
-   {
-      $defaultFieldset = new Tag('fieldset');
-      $defaultLegend = new Tag('legend');
-      $defaultLegend->AddElement('SiG Management Interface');
-      $defaultFieldset->AddElement($defaultLegend);
+   //function doDefault ($container)
+   //{
+   //   $defaultFieldset = new Tag('fieldset');
+   //   $defaultLegend = new Tag('legend');
+   //   $defaultLegend->AddElement('SiG Management Interface');
+   //   $defaultFieldset->AddElement($defaultLegend);
 
-      $ul = new Tag('ul');
-      if (SiG_Admin_Model::TablesExist()) {
-         $li = new Tag('li');
-         $explorerButton = new Tag('input', array('type'=>'submit', 'name'=>'model', 'value'=>'Explorer'));
-         $li->AddElement($explorerButton);
-         $ul->AddElement($li);
-      } else {
-         $p = new Tag('p', array('class'=>'sig_notice_error'));
-         $p->AddElement('You must configure SiG for the first time');
-         $defaultFieldset->AddElement($p);
-      }
+   //   $ul = new Tag('ul');
 
-      $li = new Tag('li');
-      $configButton = new Tag('input', array('type'=>'submit', 'name'=>'model', 'value'=>'Configure'));
-      $li->AddElement($configButton);
-      $ul->AddElement($li);
 
-      $defaultFieldset->AddElement($ul);
-      $container->AddElement($defaultFieldset);
-   }
+   //      $li = new Tag('li');
+   //      $li->AddElement($explorerButton);
+   //      $ul->AddElement($li);
+
+   //   //} else {
+   //   //   $p = new Tag('p', array('class'=>'sig_notice_error'));
+   //   //   $p->AddElement('You must configure SiG for the first time');
+   //   //   $defaultFieldset->AddElement($p);
+   //   //}
+
+
+   //   $defaultFieldset->AddElement($ul);
+   //   $container->AddElement($defaultFieldset);
+   //}
 
    function doExplorer ($container)
    {
