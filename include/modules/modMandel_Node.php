@@ -25,11 +25,13 @@ class Mandel_Node extends Node {
       if (array_key_exists('fractal_x', $_REQUEST) && array_key_exists('fractal_y', $_REQUEST)) {
          $centerX = ((-$_REQUEST['bb'] + $_REQUEST['fractal_x']) / $_REQUEST['aa']) + $_REQUEST['centerX'];
          $centerY = ((-$_REQUEST['bb'] + $_REQUEST['fractal_y']) / $_REQUEST['aa']) + $_REQUEST['centerY'];
-         $squareWidth = $_REQUEST['zoom'] * $_REQUEST['squareWidth'];
+         $zoom = $_REQUEST['zoom'];
+         $squareWidth = $zoom * $_REQUEST['squareWidth'];
       } else {
          $centerX = $this->get_property_member('centerX', 'value');
          $centerY = $this->get_property_member('centerY', 'value');
          $squareWidth = $this->get_property_member('squareWidth', 'value');
+         $zoom = 0.333;
       }
 
       $modeX = $this->get_property_member('modeX', 'value');
@@ -53,9 +55,9 @@ class Mandel_Node extends Node {
       $bb = $xModPercent * $modeY;
       $aa = $yModPercent * $modeY - $bb;
 
-      $store_dir = ABSPATH.'/images/fractals/';
+      $store_dir = IMGROOT.'/fractals/';
 
-      $temp_id=sprintf("%f.%f.%f.%f.%f.%f.%f.png",$this->id,$this->maxiter->value,$centerX,$centerY,$squareWidth,$modeX,$modeY);
+      $temp_id=sprintf("%f.%f.%f.%f.%f.%f.%f.%f.png",$this->id,$this->maxiter->value,$centerX,$centerY,$squareWidth,$modeX,$modeY,$zoom);
 
       if (!file_exists($store_dir.$temp_id)) {
          $this->im = ImageCreate($modeX, $modeY);
@@ -75,37 +77,58 @@ class Mandel_Node extends Node {
          imagepng($this->im, $store_dir.$temp_id);
       }
 
-      $return = '<form method="post" action="'.SiG_Plugin_Controller::Permalink().'">
-                 <input type="hidden" name="parent_id" value="'.$this->id.'"/>
-                 <input type="hidden" name="centerX" value="'.$centerX.'" />
-                 <input type="hidden" name="centerY" value="'.$centerY.'" />
-                 <input type="hidden" name="aa" value="'.$aa.'" />
-                 <input type="hidden" name="bb" value="'.$bb.'" />
-                 <input type="hidden" name="squareWidth" value="'.$squareWidth.'" />
-                 <input type="hidden" name="zoom" value="0.75" />
-                 <input type="image" src="/images/fractals/'.$temp_id.'" name="fractal" /></form>';
+
+         $form = new Tag('form', array('method'=>'post', 'action'=>SiG_Plugin_Controller::Permalink()));
+
+         foreach(array(
+           'parent_id'=>$this->id,
+           'centerX'=>$centerX,
+           'centerY'=>$centerY,
+           'aa'=>$aa,
+           'bb'=>$bb,
+           'squareWidth'=>$squareWidth,
+           'zoom'=>0.999*$zoom
+         ) as $key=>$val) {
+           $input = new Tag('input', array('type'=>'hidden', 'name'=>$key, 'value'=>$val));
+           $form->AddElement($input);
+         }
+
+         $ul = new Tag('ul');
+
+         $liA = new Tag('li');
+         $aA = new Tag('a', array('href'=>"/images/fractals/".$temp_id, 'target' => '_new'));
+         $aA->AddElement($temp_id);
+         $liA->AddElement($aA);
+         $ul->AddElement($liA);
 
       /*
-      $return .= '<a href="admin/node/?status=New&struct[node_type]=Mandel_Node&node_id_c='
-               . $this->id
-               . '&struct[squareWidth]='.$squareWidth
-               . '&struct[centerX]='.$centerX
-               . '&struct[centerY]='.$centerY
-               . '&struct[modeX]='.$modeX
-               . '&struct[modeY]='.$modeY
-               . '&struct[maxiter]='.$this->maxiter->value.'">Bookmark current fractal</a>';
-
+      $bookmark = '/admin/node/?status=New&struct[node_type]=Mandel_Node&node_id_c='
+                . $this->id
+                . '&struct[squareWidth]='.$squareWidth
+                . '&struct[centerX]='.$centerX
+                . '&struct[centerY]='.$centerY
+                . '&struct[modeX]='.$modeX
+                . '&struct[modeY]='.$modeY
+                . '&struct[maxiter]='.$this->maxiter->value;
 
       $return .= '<ul>Bookmarks';
       foreach ($this->get_array_of_children() as $child) {
          $return .= '<li><a href="?parent_id='.$child->id.'">'.$child->title->value.'</a></li>';
       }
       $return .= '</ul>';
+         $liB = new Tag('li');
+         $aB = new Tag('a', array('href'=>$bookmark, 'target' => '_new'));
+         $aB->AddElement("bookmark");
+         $liB->AddElement($aB);
+         $ul->AddElement($liB);
       */
 
-      //$div = new Tag('div');
-      //$div->AddElement($return);
-      $container->AddElement($return);
+         $imageMap = new Tag('input', array('name'=>'fractal', 'type'=>'image', 'src'=>"/images/fractals/".$temp_id));
+         $form->AddElement($imageMap);
+         $form->AddElement($ul);
+
+
+      $container->AddElement($form);
    }
 
    function initcolors ()

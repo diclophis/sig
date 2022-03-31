@@ -64,6 +64,7 @@ class SiG_Session extends SiG_Model {
    function GetUserData ()
    {
       global $user_ID;
+      $user = new StdClass();
       $user->ID = 1;
       $user->user_nickname = "Jon";
       $user->user_level = 10;

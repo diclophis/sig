@@ -569,7 +569,7 @@
                }
             } elseif ($prop_name == 'node_type') {
                $fieldsetElement->AddElement($this->NodeTypeSelectElement());
-                  $formElement = new Tag('p');
+               $formElement = new Tag('p');
             }
 
             $fieldsetElement->AddElement($formElement);
@@ -654,6 +654,8 @@
             $default = $this->struct['node_type'];
          }
 
+         $hiddenDiv = new Tag('div', array('style'=>'display: none;'));
+
          $select = new Tag('select', array('name'=>'struct[node_type]'));
 
          foreach ($types as $key => $value) {
@@ -665,7 +667,9 @@
             $select->AddElement($option);
          }
 
-         return $select;
+         $hiddenDiv->AddElement($select);
+
+         return $hiddenDiv;
       }
 
       static function RequestedInstances ()
@@ -732,8 +736,7 @@
          $breadcrumbFieldset->AddElement(' / ');
          $breadcrumbFieldset->AddElement($explorerButton);
 
-         $breadcrumbFieldset->AddElement($a);
-
+         //$breadcrumbFieldset->AddElement($a);
 
          $breadcrumbs = array_reverse($this->bread_crumb());
          foreach ($breadcrumbs as $crumb) {
@@ -773,8 +776,8 @@
          $submitFieldset->AddElement($deleteButton);
          $submitFieldset->AddElement($repairButton);
          if (count($this->allowed_children_types)) {
-         $submitFieldset->AddElement($newButton);
-         $submitFieldset->AddElement($this->NodeTypeSelectElement(TRUE));
+           $submitFieldset->AddElement($newButton);
+           $submitFieldset->AddElement($this->NodeTypeSelectElement(TRUE));
          }
          return $submitFieldset;
       }

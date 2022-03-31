@@ -25,6 +25,7 @@ $sys_dbname = 'sig';
 $table_prefix  = '';
 
 define('ABSPATH', '/usr/share/php');
+define('IMGROOT', '/var/www/html/images');
 
 define('CALENDAR_ROOT', ABSPATH.'/include/Calendar/');
 

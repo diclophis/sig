@@ -28,7 +28,7 @@ class SiG_Admin_Model extends SiG_Model {
          $breadcrumbFieldset->AddElement(' / ');
          $breadcrumbFieldset->AddElement($explorerButton);
 
-         $breadcrumbFieldset->AddElement($a);
+         //$breadcrumbFieldset->AddElement($a);
 
          $container->AddElement($breadcrumbFieldset);
 
